@@ -103,7 +103,7 @@ const petList=[
 ];
 let s={fish:0,coins:0,rebirth:0,rod:0,up:{power:0,coins:0,auto:0},pets:[],equipped:null};
 let peer=null,host=false,connections=[],names={},room="";
-...localStorage.getItem("ff2")||"{}")};
+try{s={...s,...JSON.parse(localStorage.getItem("ff2")||"{}")}}catch(e){}
 const $=x=>document.getElementById(x), save=()=>{try{localStorage.setItem("ff2",JSON.stringify(s))}catch(e){}}; 
 function world(){let n=1;for(let i=0;i<worlds.length;i++)if(s.fish>=worlds[i].need)n=i+1;return worlds[n-1]}
 function mult(){return (1+s.rebirth*.25)*(s.equipped?petList.find(p=>p.name===s.equipped)?.mult||1:1)}
