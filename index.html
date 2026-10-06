@@ -124,7 +124,7 @@ function buyPet(i){let p=petList[i];if(s.pets.includes(p.name)||s.coins<p.cost)r
 function equip(n){if(s.pets.includes(n)){s.equipped=n;render()}}
 $("rebirthBtn").onclick=()=>{if(s.fish<5000)return toast("You need 5,000 fish!");s.rebirth++;s.fish=0;s.coins=0;s.rod=0;s.up={power:0,coins:0,auto:0};toast("REBIRTH! Permanent ×"+(1+s.rebirth*.25).toFixed(2)+" bonus! 🔄");render()}
 function catchFish(){let w=world(),rod=rods[s.rod],base=rod.power+s.up.power;let amount=Math.max(1,Math.floor(base*w.bonus*mult()));s.fish+=amount;s.coins+=Math.floor((1+s.up.coins)*mult());if(Math.random()<.015){s.coins+=100;toast("✨ GOLDEN FISH! +100 coins!")}render()}
-$("fish").addEventListener("pointerdown",e=>{e.preventDefault();catchFish()});
+https://chikipucki.github.io/fish-frenzy-2/
 setInterval(()=>{if(s.up.auto){s.fish+=s.up.auto*world().bonus*mult();s.coins+=s.up.auto;render()}},2000);
 
 function renderBoss(){
