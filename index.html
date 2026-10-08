@@ -94,6 +94,7 @@ const worlds=[
 {name:"Galaxy Abyss",need:8000000,fish:"🌠",bg:["#7b35c9","#17052d"],bonus:180},
 {name:"Legendary Ocean",need:20000000,fish:"👑",bg:["#f0a82e","#5b2600"],bonus:250}
 ];
+const deepWorlds=[{name:"Abyssal Trench",need:0,fish:"🐡",bg:["#07152e","#01030b"],bonus:2},{name:"Glow Reef",need:1000,fish:"🪼",bg:["#173b59","#06101d"],bonus:4},{name:"Sunken Ruins",need:5000,fish:"🏛️",bg:["#26354d","#080c16"],bonus:7},{name:"Leviathan Depths",need:20000,fish:"🐋",bg:["#101d42","#020510"],bonus:12}];
 const rods=[
 {name:"Wooden Rod",cost:0,power:1,icon:"🪵"},
 {name:"Silver Rod",cost:1500,power:3,icon:"🥈"},
@@ -132,7 +133,7 @@ $("fish").onclick=catchFish;
 function buyPet(i){let p=petList[i];if(s.pets.includes(p.name)||s.coins<p.cost)return;s.coins-=p.cost;s.pets.push(p.name);s.equipped=p.name;toast(p.name+" joined you! "+p.icon);render()}
 function equip(n){if(s.pets.includes(n)){s.equipped=n;render()}}
 $("rebirthBtn").onclick=()=>{if(s.fish<5000*Math.pow(2,s.rebirth))return toast("You need "+(5000*Math.pow(1.5,s.rebirth)).toLocaleString()+" fish!");s.rebirth++;s.fish=0;s.coins=0;s.rod=0;s.up={power:0,coins:0,auto:0};toast("REBIRTH! Permanent ×"+(1+s.rebirth*.25).toFixed(2)+" bonus! 🔄");render()}
- function checkDeepSea(){if(s.fish>=20000000&&s.rebirth>=10&&!s.deepSeaUnlocked){s.deepSeaUnlocked=true;save();toast("🌑 THE DEEP SEA HAS BEEN DISCOVERED!");}}
+ function checkDeepSea(){if(s.fish>=20000000&&s.rebirth>=10&&!s.deepSeaUnlocked){s.deepSeaUnlocked=true;save();toast("🌑 THE DEEP SEA HAS BEEN DISCOVERED!");render()}}
 function catchFish(){let w=world(),rod=rods[s.rod],base=rod.power+s.up.power;let amount=Math.max(1,Math.floor(base*w.bonus*mult()));s.fish+=amount;checkDeepSea();s.coins+=Math.floor((1+s.up.coins)*mult());if(Math.random()<.015){s.coins+=100;toast("✨ GOLDEN FISH! +100 coins!")}render()}
 $("fish").addEventListener("click",catchFish);
 setInterval(()=>{if(s.up.auto){s.fish+=s.up.auto*world().bonus*mult();s.coins+=s.up.auto;render()}},2000);
