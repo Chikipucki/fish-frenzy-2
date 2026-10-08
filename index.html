@@ -72,6 +72,7 @@ input{width:100%;padding:11px;border-radius:11px;border:1px solid #ffffff2b;back
 <div class="panel" id="pets"><h2>🐾 Ocean Pets</h2><p class="tiny">Pets give permanent bonuses while equipped.</p><div id="pets"></div></div>
 
 <div class="panel" id="world"><h2>🌊 Ocean Journey</h2><div id="world"></div></div>
+ <div class="panel" id="deepsea"><h2>🌑 Deep Sea</h2><div id="deepWorld"></div></div>
 
 <div class="panel" id="rank"><h2>🏆 Room Leaderboard</h2><div id="rankings"></div></div>
 </aside>
@@ -126,6 +127,8 @@ function render(){
  $("upgrades").innerHTML=up.map(x=>{let cost=Math.floor(x[3]*Math.pow(1.7,s.up[x[0]]||0));return `<div class="upgrade"><div><b>${x[1]}</b><small>${x[2]} · Lv ${s.up[x[0]]}</small></div><button ${s.coins<cost?"disabled":""} onclick="buyUp('${x[0]}',${x[3]})">🪙 ${cost}</button></div>`}).join("");
  $("pets").innerHTML=petList.map((p,i)=>{let owned=s.pets.includes(p.name);return `<div class="pet"><div>${p.icon} <b>${p.name}</b><small>×${p.mult} catch bonus</small></div><button ${owned&&s.equipped===p.name?"disabled":owned?"":"disabled"} onclick="equip('${p.name}')">${s.equipped===p.name?"Equipped":owned?"Equip":"🪙 "+p.cost}</button>${!owned?`<button onclick="buyPet(${i})">Buy</button>`:""}</div>`}).join("");
  $("world").innerHTML=worlds.map((x,i)=>`<div class="rank" style="opacity:${s.fish>=x.need?1:.4}"><span>${x.fish} <b>${x.name}${i===worlds.indexOf(world())?" 🌊 CURRENT":""}</b></span><span>${s.fish>=x.need?"🔓":"🔒"} ${x.need} fish</span></div>`).join("");
+ $("deepWorld").innerHTML=deepWorlds.map((x,i)=>`<div class="rank" style="opacity:${s.fish>=x.need?1:.4}"><span>${x.fish} <b>${x.name}</b></span><span>${s.fish>=x.need?"🔓":"🔒"} ${x.need} fish</span></div>`).join("");
+
  renderBoss();save();broadcast({type:"score",name:$("name").value||"Player",score:Math.floor(s.fish)});
 }
 function buyRod(i){if(i<=s.rod||s.coins<rods[i].cost)return;s.coins-=rods[i].cost;s.rod=i;toast("New rod equipped! 🎣");render()}
