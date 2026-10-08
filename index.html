@@ -59,6 +59,7 @@ input{width:100%;padding:11px;border-radius:11px;border:1px solid #ffffff2b;back
 <button class="active" data-tab="shop">🛒 Shop</button>
 <button data-tab="pets">🐾 Pets</button>
 <button data-tab="world">🌊 Ocean journey</button>
+ <button data-tab="deepsea" id="deepSeaBtn" style="display:none">🌑 Deep Sea</button>
 <button data-tab="rank">🏆 Rank</button>
 </div>
 
@@ -117,6 +118,7 @@ function world(){let n=1;for(let i=0;i<worlds.length;i++)if(s.fish>=worlds[i].ne
 function mult(){return (1+s.rebirth*.25)*(s.equipped?petList.find(p=>p.name===s.equipped)?.mult||1:1)}
 function render(){
  let w=world(),idx=worlds.indexOf(w),next=worlds[idx+1]?.need||w.need; $("fishCount").textContent=Math.floor(s.fish);$("coins").textContent=Math.floor(s.coins);$("level").textContent=idx+1;$("rebirth").textContent=s.rebirth;
+ $("deepSeaBtn").style.display=s.deepSeaUnlocked?"block":"none";
  $("fish").textContent=w.fish;$("ocean").style.background=`linear-gradient(${w.bg[0]},${w.bg[1]})`;
  let pct=idx===worlds.length-1?100:Math.min(100,(s.fish-w.need)/(next-w.need)*100);$("prog").style.width=pct+"%";
  $("rods").innerHTML=rods.map((r,i)=>`<div class="upgrade"><div>${r.icon} <b>${r.name}</b><small>Power ×${r.power}</small></div><button ${s.rod>=i?"disabled":s.coins<r.cost?"disabled":""} onclick="buyRod(${i})">${s.rod===i?"Equipped":s.rod>i?"Owned":"🪙 "+r.cost}</button></div>`).join("");
