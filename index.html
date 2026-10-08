@@ -108,7 +108,7 @@ const petList=[
 {name:"Baby Shark",cost:50000,mult:2,icon:"🦈"},
 {name:"Ocean Dragon",cost:100000,mult:3,icon:"🐉"}
 ];
-let s={fish:0,coins:0,rebirth:0,rod:0,up:{power:0,coins:0,auto:0},pets:[],equipped:null};
+let s={fish:0,coins:0,rebirth:0,rod:0,up:{power:0,coins:0,auto:0},pets:[],equipped:null,deepSeaUnlocked:false};
 let peer=null,host=false,connections=[],names={},room="";
 try{s={...s,...JSON.parse(localStorage.getItem("ff2")||"{}")};s.up={power:0,coins:0,auto:0,...(s.up||{})};s.pets=s.pets||[]}catch(e){}
 const $=x=>document.getElementById(x), save=()=>{try{localStorage.setItem("ff2",JSON.stringify(s))}catch(e){}}; 
