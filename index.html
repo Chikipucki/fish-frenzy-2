@@ -125,6 +125,11 @@ const worlds=[
 {name:"Legendary Ocean",need:20000000,fish:"👑",bg:["#f0a82e","#5b2600"],bonus:250}
 ];
 const deepWorlds=[{name:"Abyssal Trench",need:0,fish:"🐡",bg:["#07152e","#01030b"],bonus:2},{name:"Glow Reef",need:1000,fish:"🪼",bg:["#173b59","#06101d"],bonus:4},{name:"Sunken Ruins",need:5000,fish:"🏛️",bg:["#26354d","#080c16"],bonus:7},{name:"Leviathan Depths",need:20000,fish:"🐋",bg:["#101d42","#020510"],bonus:12},{name:"Volcanic Abyss",need:50000,fish:"🌋",bg:["#42120b","#100206"],bonus:18},{name:"Crystal Ocean",need:100000,fish:"💎",bg:["#123d59","#07102b"],bonus:25},{name:"Ocean Legends",need:250000,fish:"👑",bg:["#35105c","#080313"],bonus:40}];
+ function enterDeepWorld(i){
+const world=deepWorlds[i];
+if(s.fish<world.need)return;
+alert("🌊 Entering "+world.fish+" "+world.name+"!");
+}
 
 const rods=[
 {name:"Wooden Rod",cost:0,power:1,icon:"🪵"},
