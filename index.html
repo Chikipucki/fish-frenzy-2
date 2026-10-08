@@ -165,7 +165,7 @@ function render(){
 function buyRod(i){if(i<=s.rod||s.coins<rods[i].cost)return;s.coins-=rods[i].cost;s.rod=i;toast("New rod equipped! 🎣");render()}
  function buyUp(k,base){let cost=Math.floor(base*Math.pow(1.7,s.up[k]||0));if(s.coins<cost)return;s.coins-=cost;s.up[k]=(s.up[k]||0)+1;toast("Upgrade purchased! ⚡");render()}
 
-$("fish").onclick=catchFish;
+$("fish").addEventListener("click",catchFish);
 function buyPet(i){let p=petList[i];if(s.pets.includes(p.name)||s.coins<p.cost)return;s.coins-=p.cost;s.pets.push(p.name);s.equipped=p.name;toast(p.name+" joined you! "+p.icon);render()}
 function equip(n){if(s.pets.includes(n)){s.equipped=n;render()}}
 $("rebirthBtn").onclick=()=>{if(s.fish<5000*Math.pow(2,s.rebirth))return toast("You need "+(5000*Math.pow(1.5,s.rebirth)).toLocaleString()+" fish!");s.rebirth++;s.fish=0;s.coins=0;s.rod=0;s.up={power:0,coins:0,auto:0};toast("REBIRTH! Permanent ×"+(1+s.rebirth*.25).toFixed(2)+" bonus! 🔄");render()}
