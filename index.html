@@ -158,7 +158,7 @@ function render(){
  $("pets").innerHTML=petList.map((p,i)=>{let owned=s.pets.includes(p.name);return `<div class="pet"><div>${p.icon} <b>${p.name}</b><small>×${p.mult} catch bonus</small></div><button ${owned&&s.equipped===p.name?"disabled":owned?"":"disabled"} onclick="equip('${p.name}')">${s.equipped===p.name?"Equipped":owned?"Equip":"🪙 "+p.cost}</button>${!owned?`<button onclick="buyPet(${i})">Buy</button>`:""}</div>`}).join("");
  $("world").innerHTML=worlds.map((x,i)=>`<div class="rank" style="opacity:${s.fish>=x.need?1:.4}"><span>${x.fish} <b>${x.name}${i===worlds.indexOf(world())?" 🌊 CURRENT":""}</b></span><span>${s.fish>=x.need?"🔓":"🔒"} ${x.need} fish</span></div>`).join("");
 
- $("deepWorld").innerHTML=deepWorlds.map((x,i)=>{let unlocked=s.fish>=x.need;return `<div class="rank"><span>${x.fish} <b>${x.name}</b></span><span>${unlocked?"🔓":"🔒"} ${x.need} fish</span></div>`}).join("");
+ $("deepWorld").innerHTML=deepWorlds.map((x,i)=>{let unlocked=s.fish>=x.need;return `<div class="rank"><span>${x.fish} <b>${x.name}</b></span><span>${unlocked?"🔓":"🔒"} ${x.need} fish</span></div>`}).join(""); 
 
  renderBoss();save();broadcast({type:"score",name:$("name").value||"Player",score:Math.floor(s.fish)});
 }
